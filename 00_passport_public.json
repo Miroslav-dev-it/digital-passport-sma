@@ -1,0 +1,50 @@
+# Public Digital Passport — Мирослав (SMA) v1.0 (Safe Edition)
+
+> Публичная версия: без чувствительных данных и деталей криптовалютного проекта.
+> Оставлены ключевые компетенции, KPI и рыночная оценка.
+
+```json
+{
+  "passport": {
+    "owner": "Мирослав (SMA)",
+    "version": "1.0.0-public",
+    "meta": {
+      "last_updated": "2025-09-03T21:30:00+03:00",
+      "visibility": "public",
+      "semver_policy": "major.minor.patch",
+      "registry_id": "SMA-DIGI-PASSPORT-PUBLIC-001"
+    },
+    "identity": {
+      "aliases": ["Мирослав", "SMA"],
+      "roles": ["Architect", "DevOps", "TOC Engineer", "PromptOps Lead"],
+      "languages": ["ru", "en"]
+    },
+    "skills": {
+      "core_stack": ["Python", "FastAPI", "Async SQLAlchemy", "Docker", "Kubernetes"],
+      "frameworks": ["PromptForge OS", "LiveFRT", "PromptOps Nexus", "GoldenMode"],
+      "domains": ["DevOps", "AI Ops", "Prompt Engineering", "TOC Integration"]
+    },
+    "market_value": {
+      "hourly_rate_usd": "30-200",
+      "annual_rate_usd": "60000-180000",
+      "note": "Гибкая ставка в зависимости от задачи и объема работы"
+    },
+    "experience": {
+      "highlights": [
+        "Создатель экосистемы PromptOps/GoldenMode",
+        "Архитектор микросервисных решений уровня enterprise",
+        "Опыт запуска коммерческого продукта с пассивным доходом"
+      ]
+    },
+    "kpi": {
+      "security_score": 9.5,
+      "visibility": 8.0,
+      "project_throughput": "high"
+    },
+    "status": {
+      "audit": "Red Button Audit: PASS",
+      "positioning": "Systemic Architect Tier (~0.001% global)"
+    }
+  }
+}
+```
