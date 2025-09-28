@@ -1,0 +1,115 @@
+openapi: 3.1.0
+info:
+  title: CodeGen Service
+  version: 0.1.0
+servers:
+  - url: http://localhost:8000
+paths:
+  /health:
+    get:
+      tags: [ops]
+      summary: Health check
+      responses:
+        '200':
+          description: Service status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: green
+  /generate:
+    post:
+      tags: [codegen]
+      summary: Generate code from natural language prompt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateCodePayload'
+      responses:
+        '201':
+          description: Generated source code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneratedCode'
+        '400':
+          description: Validation or safety violation
+  /history:
+    get:
+      tags: [codegen]
+      summary: Retrieve recent generation history
+      responses:
+        '200':
+          description: Collection of generation runs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryResponse'
+components:
+  schemas:
+    ProgrammingLanguage:
+      type: string
+      enum: [python, javascript, go]
+    GenerateCodePayload:
+      type: object
+      required: [prompt]
+      properties:
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 4096
+        language:
+          $ref: '#/components/schemas/ProgrammingLanguage'
+          default: python
+        max_tokens:
+          type: integer
+          minimum: 1
+          maximum: 4096
+          default: 512
+        user_id:
+          type: string
+          nullable: true
+          maxLength: 128
+    GeneratedCode:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/GenerateCodePayload'
+        code:
+          type: string
+        model:
+          type: string
+        token_usage:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    HistoryItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: string
+          nullable: true
+        language:
+          $ref: '#/components/schemas/ProgrammingLanguage'
+        model:
+          type: string
+        token_usage:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    HistoryResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoryItem'
